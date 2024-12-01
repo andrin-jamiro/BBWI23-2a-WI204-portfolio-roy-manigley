@@ -1,0 +1,18 @@
+<div class="row container">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-image">
+        <img src="/assets/portfolio-header.jfif">
+      <span class="card-title">About me: {{ aboutMe?.name }}</span>
+      </div>
+      <div class="card-content">
+        <div style="text-align: center">
+          <img style="border-radius: 50%" [src]="aboutMe?.imagePath">
+        </div>
+        <div class="typewriter">
+          <p>Hi my name is {{ aboutMe?.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

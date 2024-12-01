@@ -1,0 +1,17 @@
+<div class="row container">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-image">
+        <img src="/assets/portfolio-header.jfif">
+      <span class="card-title">CV</span>
+      </div>
+      <div class="card-content">
+        <ul style="text-align: center;">
+         @for (cv of cvs; track cv.employer) {
+          <li><strong>{{ cv.employer }}</strong> {{ cv.start }} - {{ cv.end }}</li>
+         }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
