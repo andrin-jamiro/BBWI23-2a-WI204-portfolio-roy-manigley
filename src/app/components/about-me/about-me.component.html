@@ -12,6 +12,10 @@
         <div class="typewriter">
           <p>Hi my name is {{ aboutMe?.name }}</p>
         </div>
+        <form #aboutMeForm="ngForm" (ngSubmit)="submit(aboutMeForm)">
+          <input type="text" name="name" [ngModel]="aboutMe?.name" required>
+          <button class="btn" type="submit" [disabled]="aboutMeForm.invalid">save</button>
+        </form>
       </div>
     </div>
   </div>

@@ -6,10 +6,24 @@
       <span class="card-title">CV</span>
       </div>
       <div class="card-content">
-        <ul style="text-align: center;">
-         @for (cv of cvs; track cv.employer) {
-          <li><strong>{{ cv.employer }}</strong> {{ cv.start }} - {{ cv.end }}</li>
-         }
+        @if (formGroup) {
+        <form [formGroup]=formGroup (ngSubmit)="saveCV()">
+          <input type="number" formControlName="id" hidden>
+          <input type="text" formControlName="employer">
+          <input type="date" formControlName="start">
+          <input type="date" formControlName="end">
+          <button class="btn" type="submit">save</button>
+          <button class="btn grey" type="button" (click)="formGroup = undefined">cancel</button>
+        </form>
+        }
+        <button class="btn" type="button" (click)="select()">new</button>
+        <ul>
+          @for (cv of cvs; track cv.employer) {
+          <li>{{ cv.employer }} {{ cv.start }} - {{ cv.end }}
+            <button class="btn" (click)="select(cv)">edit</button>
+            <button class="btn red" (click)="deleteCV(cv!.id!)">delete</button>
+          </li>
+          }
         </ul>
       </div>
     </div>
