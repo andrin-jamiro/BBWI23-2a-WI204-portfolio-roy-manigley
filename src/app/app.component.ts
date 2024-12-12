@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'portfolio-app';
+
+  onEmit(event: string): void {
+    alert(event)
+  } 
 }
