@@ -42,7 +42,10 @@ export class CreateUpdateComponent implements OnInit {
       } else {
         observable = this.cvService.createCV(this.formGroup.value);
       }
-      observable.subscribe(() => this.back());
+      observable.subscribe(() => {
+        this.formGroup?.markAsUntouched();
+        this.back();
+      });
     } else {
       alert('CV is invalid');
     }
