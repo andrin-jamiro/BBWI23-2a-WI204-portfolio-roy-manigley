@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateUpdateComponent } from './components/cv/create-update/create-update.component';
 import { DeleteComponent } from './components/cv/delete/delete.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { DeleteComponent } from './components/cv/delete/delete.component';
     AboutMeComponent,
     CVComponent,
     CreateUpdateComponent,
-    DeleteComponent
+    DeleteComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

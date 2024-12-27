@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'portfolio-app';
+  isAuthenticated = false;
 
-  onEmit(event: string): void {
-    alert(event)
-  } 
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.router.events
+    .subscribe(() => this.isAuthenticated = this.authService.isAuthenticated())
+  }
 }

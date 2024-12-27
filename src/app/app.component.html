@@ -2,8 +2,13 @@
   <div class="nav-wrapper">
     <a href="#" class="brand-logo center">Portfolio</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-     <li><a [routerLink]="'/about-me'"><i class="material-icons left">account_circle</i>About Me</a></li>
-     <li><a [routerLink]="'/cv'"><i class="material-icons left">event_note</i>CV</a></li>
+      @if(isAuthenticated){
+        <li><a [routerLink]="'/about-me'"><i class="material-icons left">account_circle</i>About Me</a></li>
+        <li><a [routerLink]="'/cv'"><i class="material-icons left">event_note</i>CV</a></li>
+        <li><a [routerLink]="'/logout'"><i class="material-icons left">logout</i>Logout</a></li>
+      } @else {
+        <li><a [routerLink]="'/login'"><i class="material-icons left">login</i>Login</a></li>
+      }
     </ul>
   </div>
 </nav>
