@@ -4,13 +4,15 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import { CVComponent } from './components/cv/cv.component';
 import { CreateUpdateComponent } from './components/cv/create-update/create-update.component';
 import { DeleteComponent } from './components/cv/delete/delete.component';
+import { CvListResolverService } from './services/resolvers/cv-list-resolver.service';
+import { CvDetailResolverService } from './services/resolvers/cv-detail-resolver.service';
 
 const routes: Routes = [
   { path: 'about-me', component: AboutMeComponent },
-  { path: 'cv', component: CVComponent },
+  { path: 'cv', component: CVComponent, resolve: {records: CvListResolverService}},
   { path: 'cv/new', component: CreateUpdateComponent },
-  { path: 'cv/:id/edit', component: CreateUpdateComponent },
-  { path: 'cv/:id/delete', component: DeleteComponent },
+  { path: 'cv/:id/edit', component: CreateUpdateComponent, resolve: {record: CvDetailResolverService}},
+  { path: 'cv/:id/delete', component: DeleteComponent, resolve: {record: CvDetailResolverService} },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CVService } from '../../../services/cv.service';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap, of } from 'rxjs';
+import { map } from 'rxjs';
 import { CV } from '../../../models/cv';
+import { CVService } from '../../../services/cv.service';
 
 @Component({
   selector: 'app-create-update',
@@ -20,15 +20,8 @@ export class CreateUpdateComponent implements OnInit {
   ){} 
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map(params => params.get('id')),
-      mergeMap(id => {
-        if (!id){
-          return of(null);
-        } else {
-          return this.cvService.getCVById(id!)  
-        } 
-      })
+    this.route.data.pipe(
+      map(data => data['record'] ?? null)
     ).subscribe(cv => this.initForm(cv))
   }
 
@@ -38,9 +31,7 @@ export class CreateUpdateComponent implements OnInit {
       start: new FormControl(cv?.start ?? null, [Validators.required]),
       end: new FormControl(cv?.end ?? null, []),
     });
-    if (cv?.id) {
-      this.formGroup.addControl('id', new FormControl(cv?.id ?? null, []))
-    }
+    this.formGroup.addControl('id', new FormControl(cv?.id ?? null, []))
   } 
 
   saveCV(): void {
@@ -51,9 +42,14 @@ export class CreateUpdateComponent implements OnInit {
       } else {
         observable = this.cvService.createCV(this.formGroup.value);
       }
-      observable.subscribe(() => history.back());
+      observable.subscribe(() => this.back());
     } else {
       alert('CV is invalid');
     }
   }
+
+  back() {
+    history.back();
+  }
+    
 }

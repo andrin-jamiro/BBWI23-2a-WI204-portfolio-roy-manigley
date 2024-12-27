@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CVService } from '../../../services/cv.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
 import { CV } from '../../../models/cv';
+import { CVService } from '../../../services/cv.service';
 
 @Component({
   selector: 'app-delete',
@@ -19,9 +19,8 @@ export class DeleteComponent implements OnInit {
   ) {} 
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map(params => params.get('id')),
-      mergeMap(id => this.cvService.getCVById(id!))
+    this.route.data.pipe(
+      map(data => data['record']),
     ).subscribe(value => {
       this.cv = value;
     });

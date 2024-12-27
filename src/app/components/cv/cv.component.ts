@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CV } from '../../models/cv';
 import { CVService } from '../../services/cv.service';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
@@ -12,7 +13,8 @@ export class CVComponent implements OnInit {
   cvs: CV[] = [];
 
   constructor(
-    private cvService: CVService
+    private cvService: CVService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -20,8 +22,9 @@ export class CVComponent implements OnInit {
   }
 
   loadCVs(): void {
-    this.cvService.getCVs().pipe(
-      tap(cvs => cvs.sort((a, b) => (b.end ?? Infinity) - (a.end ?? Infinity)))
+    this.route.data.pipe(
+      map(data => data['records']),
+      tap((cvs: CV[]) => cvs.sort((a, b) => (b.end ?? Infinity) - (a.end ?? Infinity)))
     ).subscribe(cvs => this.cvs = cvs);
   }
 }
