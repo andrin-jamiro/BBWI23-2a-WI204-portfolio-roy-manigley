@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  formGroup: any;
+  formGroup?: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -27,13 +27,13 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     const isAuthenticated = this.authService.login(
-      this.formGroup.value.username,
-      this.formGroup.value.password,
+      this.formGroup!.value.username,
+      this.formGroup!.value.password,
     )
     if (isAuthenticated) {
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
     } else {
-      alert('invalid credentials')
+      alert('invalid credentials');
     }
   }
 }

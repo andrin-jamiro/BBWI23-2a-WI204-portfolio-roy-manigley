@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CV } from '../../models/cv';
-import { CVService } from '../../services/cv.service';
-import { map, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { map, tap } from 'rxjs';
+import { CV } from '../../models/cv';
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
@@ -13,7 +12,6 @@ export class CVComponent implements OnInit {
   cvs: CV[] = [];
 
   constructor(
-    private cvService: CVService,
     private route: ActivatedRoute
   ) {}
 

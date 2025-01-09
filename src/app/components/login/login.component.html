@@ -4,10 +4,10 @@
         <div class="card-content">
           @if (formGroup) {
           <form [formGroup]=formGroup (ngSubmit)="login()">
-            <input type="text" formControlName="username" autofocus>
-            <input type="password" formControlName="password">
+            <input id="username" type="text" formControlName="username" autofocus>
+            <input id="password" type="password" formControlName="password">
             <div style="display: flex; gap: 2em; justify-content: center;">
-                <button class="btn" type="submit" [disabled]="formGroup.invalid">Login</button>
+                <button id="login-btn" class="btn" type="submit" [disabled]="formGroup.invalid">Login</button>
              </div>
           </form>
           }

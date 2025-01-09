@@ -5,9 +5,9 @@
       @if(isAuthenticated){
         <li><a [routerLink]="'/about-me'"><i class="material-icons left">account_circle</i>About Me</a></li>
         <li><a [routerLink]="'/cv'"><i class="material-icons left">event_note</i>CV</a></li>
-        <li><a [routerLink]="'/logout'"><i class="material-icons left">logout</i>Logout</a></li>
+        <li><a id="menu-logout-btn" [routerLink]="'/logout'"><i class="material-icons left">logout</i>Logout</a></li>
       } @else {
-        <li><a [routerLink]="'/login'"><i class="material-icons left">login</i>Login</a></li>
+        <li><a id="menu-login-btn" [routerLink]="'/login'"><i class="material-icons left">login</i>Login</a></li>
       }
     </ul>
   </div>
