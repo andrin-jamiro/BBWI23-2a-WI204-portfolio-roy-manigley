@@ -18,9 +18,17 @@ describe('CVComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            data: of({'records': [
-              new CV(), new CV(), new CV(), new CV(), new CV(),
-            ]}),
+            data: of(
+              {
+                'records': [
+                  new CV('Alpha', 1, 1), 
+                  new CV('Bravo', 1, 2), 
+                  new CV('Charlie', 1, 3), 
+                  new CV('Delta', 1, 4), 
+                  new CV('Echo', 1, 5),
+                ]
+              }
+          ),
           },
         }
       ]
@@ -39,5 +47,14 @@ describe('CVComponent', () => {
   it('should set the values by the route', () => {
     component.loadCVs()
     expect(component.cvs.length).toBe(5);
+  });
+
+  it('should sort the CVs by end DESC', () => {
+    component.loadCVs()
+    expect(component.cvs[0].employer).toBe('Echo');
+    expect(component.cvs[1].employer).toBe('Delta');
+    expect(component.cvs[2].employer).toBe('Charlie');
+    expect(component.cvs[3].employer).toBe('Bravo');
+    expect(component.cvs[4].employer).toBe('Alpha');
   });
 });
