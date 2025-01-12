@@ -22,10 +22,15 @@ export class AboutMeComponent implements OnInit {
   submit(form: NgForm): void {
     if (form.valid) {
       this.aboutMeService.updateAboutMe(form.value.name).subscribe(
-        aboutMe => this.aboutMe!.name = aboutMe.name
-      )
+        aboutMe => this.aboutMe!.name = aboutMe.name,
+        error => {
+          console.error(error);
+          alert('An error occurred while updating about me');
+        }
+      );
     } else {
-      alert('The name is not valid')
+      alert('The name is not valid');
     }
   }
+
 }
